@@ -21,7 +21,11 @@
   "devDependencies": {
     "gulp": "~3.8.10",
     "gulp-less": "~3.0.1",
+    "gulp-livereload": "~3.8.0",
+    "gulp-mocha": "^2.0.1",
     "gulp-nodemon": "~2.0.2",
-    "gulp-livereload": "~3.8.0"
+    "gulp-preprocess": "^1.2.0",
+    "should": "^5.2.0",
+    "supertest": "^0.15.0"
   }
 }

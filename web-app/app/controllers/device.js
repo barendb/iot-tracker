@@ -7,9 +7,9 @@ exports.all = function (req, res, next) {
 
 	Device.find({}).exec(function (err, devices) {
 		if(err) { return next(err); }
-		if(!devices) { return next(new Error('Could not load devices')); }
+		if(devices === null) { return next(new Error('Could not load devices')); }
 		res.jsonp(devices);
-		next();
+		//next();
 	});
 };
 
@@ -17,11 +17,10 @@ exports.single = function (req, res, next) {
 
 	var id = req.params.id;
 
-	Device.getByid(id, function (err, device) {
+	Device.load(id, function (err, device) {
 		if(err) { return next(err); }
 		if(!device) { return next(new Error('Failed to load device ' + id)); }
 		req.device = device;
-		next();
 	});
 };
 
