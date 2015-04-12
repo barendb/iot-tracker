@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var DeviceSchema = new Schema({
-	title: String,
+	name: String,
 });
 
 DeviceSchema.statics.load = function(id, cb) {

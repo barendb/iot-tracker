@@ -19,6 +19,7 @@
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
+    "chance": "^0.7.3",
     "gulp": "~3.8.10",
     "gulp-less": "~3.0.1",
     "gulp-livereload": "~3.8.0",

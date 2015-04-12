@@ -17,10 +17,12 @@ exports.single = function (req, res, next) {
 
 	var id = req.params.id;
 
+	console.log(id);
+
 	Device.load(id, function (err, device) {
 		if(err) { return next(err); }
 		if(!device) { return next(new Error('Failed to load device ' + id)); }
-		req.device = device;
+		res.jsonp(device);
 	});
 };
 
