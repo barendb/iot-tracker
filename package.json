@@ -5,7 +5,8 @@
   "main": "web-app/app.js",
   "scripts": {
     "test": "gulp test",
-    "start": "node web-app/app.js"
+    "start": "node web-app/app.js",
+    "postinstall" : "node gulpfile.js"
   },
   "repository": {
     "type": "git",
