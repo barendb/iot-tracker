@@ -1,7 +1,15 @@
 module.exports = {
 	app: {
-		name: 'openshift-sample-app'
+		name: 'barendb-tracker'
 	},
-	port: 3000,
-	db: 'mongodb://localhost/openshift-sample-app-development'
+	port: 	process.env.OPENSHIFT_NODEJS_PORT ||
+            process.env.PORT ||
+            8080,
+	db: 	process.env.MONGOLAB_URI ||
+        	process.env.MONGOHQ_URL ||
+        	process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
+        	'mongodb://localhost/server',
+	ip: 	process.env.OPENSHIFT_NODEJS_IP ||
+        	process.env.IP ||
+        	undefined
 };
