@@ -10,6 +10,7 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var traceur = require('gulp-traceur');
 
+
 // =============================================================================
 // Build Client App
 // =============================================================================
@@ -26,7 +27,7 @@ gulp.task('dependencies', function() {
       'node_modules/systemjs/dist/system.js',
       'node_modules/systemjs/dist/system.js.map'
     ])
-    .pipe(gulp.dest('public/lib'));
+    .pipe(gulp.dest('web-app/public/lib'));
 });
 
 // tanspile, concat & move angular
@@ -47,12 +48,12 @@ gulp.task('angular2', function() {
       moduleName: true
     }))
     .pipe(concat('angular2.js'))
-    .pipe(gulp.dest('public/lib'));
+    .pipe(gulp.dest('web-app/public/lib'));
 });
 
 // transpile & move js
 gulp.task('js', function() {
-  return gulp.src('client_app/**/*.js')
+  return gulp.src('web-app/client_app/**/*.js')
     .pipe(rename({
       extname: ''
     }))
@@ -65,22 +66,22 @@ gulp.task('js', function() {
     .pipe(rename({
       extname: '.js'
     }))
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('web-app/public'));
 });
 
 // move html
 gulp.task('html', function() {
-  return gulp.src('client_app/**/*.html')
-    .pipe(gulp.dest('public'));
+  return gulp.src('web-app/client_app/**/*.html')
+    .pipe(gulp.dest('web-app/public'));
 });
 
 // =============================================================================
 // Less
 // =============================================================================
 gulp.task('less', function () {
-	gulp.src('./client_app/less/*.less')
+	gulp.src('./web-app/client_app/less/*.less')
 		.pipe(less())
-		.pipe(gulp.dest('./public/css'))
+		.pipe(gulp.dest('./web-app/public/css'))
 		.pipe(livereload());
 });
 
@@ -88,9 +89,9 @@ gulp.task('less', function () {
 // Watch
 // =============================================================================
 gulp.task('watch', function() {
-  gulp.watch('client_app/**/*.js', ['js']);
-  gulp.watch('client_app/**/*.html', ['html']);
-  gulp.watch('client_app/**/*.less', ['less']);
+  gulp.watch('web-app/client_app/**/*.js', ['js']);
+  gulp.watch('web-app/client_app/**/*.html', ['html']);
+  gulp.watch('web-app/client_app/**/*.less', ['less']);
 });
 
 
@@ -100,7 +101,7 @@ gulp.task('watch', function() {
 gulp.task('serve', function () {
 	livereload.listen();
 	nodemon({
-		script: 'app.js',
+		script: 'web-app/app.js',
 		ext: 'js coffee handlebars',
 	}).on('restart', function () {
 		setTimeout(function () {
@@ -113,7 +114,7 @@ gulp.task('serve', function () {
 // Tests
 // =============================================================================
 gulp.task('test', function () {
-	return gulp.src('./app/**/*.spec.js', {
+	return gulp.src('./web-app/app/**/*.spec.js', {
 			read: false
 		})
 		.pipe(preprocess({
